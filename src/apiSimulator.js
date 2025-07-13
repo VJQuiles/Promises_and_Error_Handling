@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchSalesReport = exports.fetchProductReviews = exports.fetchProductCatalog = void 0;
+const customErrors_1 = require("./customErrors");
 const fetchProductCatalog = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -27,7 +28,7 @@ const fetchProductReviews = (productId) => {
                 ]);
             }
             else {
-                reject(`failed to fetch reviews for Product ID ${productId}`);
+                reject(new customErrors_1.NetworkError(`failed to fetch reviews for Product ID ${productId}`));
             }
         }, 1500);
     });
@@ -43,7 +44,7 @@ const fetchSalesReport = () => {
                 ]);
             }
             else {
-                reject(`failed to fetch sales report`);
+                reject(new customErrors_1.DataError(`failed to fetch sales report`));
             }
         });
     });
